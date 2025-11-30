@@ -121,5 +121,4 @@ def calculate_range(lst):
     lst = sort_list(lst)
     range = lst[len(lst)-1] - lst[0]
     print("Range : ",range)
-    return range
-calculate_range(age)    
+    return range   
