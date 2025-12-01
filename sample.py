@@ -2619,57 +2619,53 @@ country_info = [
         "currency": "Botswana pula"
     }
 ]
-language_set = []
-for i in country_info:
-    for j in i.keys():
-        if 'languages' in i.keys():
-            language_set.append(i['languages'])
-        else:
-            print("They are dumb")
 
-print(len(language_set))
+#3.i - Day10
+def TotalNum_lang(lst):
+    unique_language = []
+    for data in lst:
+        for key in data['languages']:
+            #if we use the logic to take every country at most once then can't we just assume it will contain the unique language only. 
+            if key not in unique_language:
+                unique_language.append(key)
+    #unique_language_set = set(unique_language) 
+    print(len(unique_language))
+#TotalNum_lang(country_info)
 
-unique_language = []
-#print(language_set)
-print(type(language_set))
-for language in language_set:
-    unique_language.extend(language)
-#print(unique_language)
-print(len(unique_language))
-unique_language_set = set(unique_language)
-print(len(unique_language_set))
+#3.ii - Day 10
+def MostSpkn_lang(lst,n):#n = top n country
+    most_spkn_lang = {}
+    for data in lst:
+        for key in data['languages']:
+            if key not in most_spkn_lang:
+                most_spkn_lang[key] = 1
+            else:
+                most_spkn_lang[key] = most_spkn_lang[key] + 1
+    most_spkn_lang = dict(sorted(most_spkn_lang.items(), key=lambda item:item[1],reverse= True))
+    most_spkn_lang_sorted_lst = sorted(most_spkn_lang.items(),key=lambda x:x[1],reverse=True)
+    #For Display the Country with Count
+    for i,(language,count) in enumerate(most_spkn_lang_sorted_lst[0:n],1):
+        print(f"Index : {i} Count : {count} \t Language : {language} ")
+    return most_spkn_lang_sorted_lst[0:n]
 
-#finding the mostly population speaking country
-population_set = []
-for n in country_info:
-    if 'population' in n.keys():
-        population_set.append(n['population'])
-population_set.sort()
-print("Most populated countries population : ",population_set[len(population_set)-1])
+#x = (MostSpkn_lang(country_info,5))
+#3.iii - Day 10
+def Populated_country(lst,n):
+    Populated_country_Dic = {}
+    for data in country_info:
+        if data['name'] not in Populated_country_Dic:
+           Populated_country_Dic[data['name']] = data['population']
+    Populated_country_Dic = dict(sorted(Populated_country_Dic.items(),key=lambda item:item[1] , reverse=True))      
+    Populated_country_lst = sorted(Populated_country_Dic.items(), key=lambda x:x[1], reverse=True)
+    #for decorated Display
+    print(f"\t***Top {n} Country By Population in the World ***")
+    for i,(country,population) in enumerate(Populated_country_lst[0:n],1):
+        print(f"Index : {i} \t Country : {country} \t Population : {population}")
+    return Populated_country_lst
 
-#the most spoken language country
-for n in country_info:
-    if 1377422166 in n.values():
-        print(n['name'])        
-    
+# n = int(input("Enter the top n country you want to see : "))
+# x = Populated_country(country_info,n=n)
 
-#finding the top10 country using the function : counter from collections
+#3.5. - Day 11 - same as day 10's problems 
 
-language_counter = Counter(unique_language)
-print(language_counter.most_common(10))
 
-#finding the top 10 populated country
-populated_country = []
-for country in country_info:
-   populated_country.append(country['name'])
-print(len(populated_country))
-
-country_info_copy = country_info.copy()
-country_info_copy.sort(key=lambda country:country['population'], reverse= True)
-
-top_10 = country_info_copy[:10]
-
-print(top_10)
-
-for country in top_10:
-    print(country["name"])

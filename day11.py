@@ -71,10 +71,10 @@ def check_median2(lst):
         
 
 
-age = [3,34,23,6,43,55,18,23,53,23,53,34,64,65,786,786,335]
-print(age)
+age = [3,34,23,6,43,55,18,23,53,23,53,34,64,65,78,78,35]
+#deleted useless print func from here
 
-print("Median Value : ",check_median2(age))
+#print("Median Value : ",check_median2(age))
 
 def calculate_mode(lst):
     #***Find the most frequent element in a list ***
@@ -115,10 +115,72 @@ def calculate_mode_top_N(lst,n):
     for i,(key,value) in enumerate(top_items_dic.items()):
         print(f" ranking : {i} \t : the item : {key} \t Appearance : {value}")  
 
-calculate_mode_top_N(age,4)
+#calculate_mode_top_N(age,4)
 
 def calculate_range(lst):
     lst = sort_list(lst)
     range = lst[len(lst)-1] - lst[0]
     print("Range : ",range)
     return range   
+
+#calculate_range(age)
+def calculate_variation(lst):
+    mean = sum(lst)/len(lst)
+    #squared deviation
+    squared_deviation = []
+    for x in lst:
+        squared_deviation.append((x - mean)**2)
+    #calculate variance
+    variance = sum(squared_deviation)/len(lst)
+    return variance
+
+import math
+#print(calculate_variation(age))
+def calculate_Std(lst):
+    mean = sum(lst)/len(lst)
+    lst_squared = []
+    for data in lst:
+        lst_squared.append((data-mean)**2)
+    sum_squared_data = sum(lst_squared)
+    std_var = math.sqrt(sum_squared_data/len(lst))
+    return std_var
+
+#print(calculate_Std(age))   
+
+#Exercise 3
+
+def check_PrimeNum(num):
+    for x in range(2,num):
+        print(f"{num} / {x} = {num/x}")#display the calculation
+        if num==2 :
+            continue
+        if num%x ==0 :
+            print(f"It's not a prime Number, It's divided by {x} ")
+            return
+        else :
+            None
+    else:
+        print("it's a prime Number ")
+    
+#check_PrimeNum(int(input("Enter A number ")))
+
+def check_uniqueItem(lst):
+    unique_Item = set(lst)
+    return True if len(unique_Item)==len(lst) else False
+
+#print("List of all Unique Items : ",check_uniqueItem(age))
+
+def check_itemType(lst):
+    for i in range(len(lst)):
+        for j in range(i+1,len(lst)):
+            if type(lst[i]) != type(lst[j]):
+                print(f"They are different types of Data {lst[i]} and {lst[j]}")
+                return False
+
+    return True     
+   
+#print(check_itemType(age))
+import keyword
+def check_valid_Var(variable):
+    return (variable.isidentifier() and not keyword.iskeyword(variable))
+print(check_valid_Var("Hey"))
