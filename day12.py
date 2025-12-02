@@ -102,4 +102,62 @@ def Gen_Complex_Pass2(length):#optimesed way from GFG-GeeksForGeeks
     x = "".join(password)
     print("Your Password : {}".format(x))
     return x
-x = Gen_Complex_Pass2(7)
+
+#Rge Color Gen 1.iii
+def Rgb_Colr_Gen(): #Number -> How many
+    Rgb_Colour = []
+    for i in range(0,3):
+        Rgb_Colour.append(random.randint(0,255))
+    
+    #print(tuple(Rgb_Colour))
+    return Rgb_Colour
+    
+#2.ii
+def list_rgb_color(number):#num -> how many colour needed
+    num_lst = []
+    for i in range(0,number):
+        x = Rgb_Colr_Gen()
+        num_lst.append(x)
+
+    
+    return num_lst
+
+def hexacolgen():
+    base = ["a","b","c","d",'e','e',0,1,2,3,4,5,6,7,8,9]
+    hexaCol = ['#']
+    random.shuffle(base)
+    for i in range(6):
+            hexaCol.append(str(base[i]))#convert to string while appending otherwise later .join is not helping to print
+    
+    print("".join(hexaCol))
+    return hexaCol
+#x = hexacolgen()
+#it's just to remember the enumerate function's uses
+def display(x):
+    for i,(c1,c2,c3) in enumerate(x,1):
+        print(f"index : {i} color(rgb) : {c1},{c2},{c3}")
+
+#3.i
+#import age from day11 and apply shuffle
+from day11 import age 
+def shuffle_list(lst):
+    return random.shuffle(lst)
+
+# shuffle_list(age)
+# print(age)
+
+def random_number(length,max_num = 9):
+    if length>max_num:
+        raise ValueError(f"{length} can't be more than {max_num}")
+
+    random_array = []
+    while len(random_array)<length:
+        random_element = random.randint(0,9)
+        if random_element not in random_array:
+            random_array.append(random_element)
+        
+    return random_array
+
+random_number(8)
+
+#maybe if i had more time i would try 
