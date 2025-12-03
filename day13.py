@@ -126,12 +126,27 @@ ques_6_final = [f"{First_name} {surname}" for [(First_name,surname)] in names]
 
 
 #7 - lambda function to calculate a slope or y-intercept of linear functions.
+#two lambda function with one wrapping function
 
-
-x = lambda x1,y1,x2,y2:((y2-y1)/(x2-x1))
+slope = lambda x1,y1,x2,y2:((y2-y1)/(x2-x1))
 
 calc_yintercept =  lambda m,x,y:y-(m*x)
 
-print(x(1,2,3,4))
-print(calc_yintercept(3,2,5))
-def calc_fun():
+def calc_func(*value):
+    if len(value)==3:
+        return calc_yintercept(*value)
+    elif len(value)==4 :
+        if value[2]-value[0]!=0:
+            return slope(*value)
+        else:
+            print("it's not a valid input check the equation again ")
+            return
+    else:
+        print("Invalid Input enter 3 value or 4 value")
+        return 
+
+
+
+#Another implementation with only one lambda function(also kind of two)
+
+calc_function = lambda *args:(args[3]-args[1])/(args[2]-args[0]) if len(args)==4 else args[2]-(args[0]*args[1])
