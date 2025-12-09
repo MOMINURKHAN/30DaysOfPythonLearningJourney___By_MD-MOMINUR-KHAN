@@ -157,15 +157,25 @@ def show_func():
 #1 - sort countries_data.py by name,capital and population
 
 from sample import country_info
-def sort_byname(lst):
-    sorted_list = []
-    for key in lst:
-        sorted_list.append(key['name'])
-    return set(sorted_list)    
+def sort_by(lst,category):
+    lst = sorted(lst ,key=lambda x:x[category],reverse=True) #sorting the main list with all keeping data not like take some data and make another dict and sort that one 
+    return lst
+        
 
-sorted_final = list(sort_byname(country_info))
-#for sorting those two methods are ok
-# sorted_final = sorted(sorted_final)
-sorted_final.sort()
-print(sorted_final)
+#2 - sort out the 10 most spoken language by location means if english is spoken in more countris then which then which........
+def sort_lang_loc(lst):
+    dictionary = {}
+    for j in lst:
+        for i in j['languages']: 
+            if i not in dictionary:
+                dictionary[i] = 1
+            else:
+                dictionary[i]+=1
+            
+    dictionary = sorted(dictionary.items(), key=lambda x:x[1],reverse= True)
+    return ((dictionary)[:10])
 
+sort_lang_loc(country_info)
+
+# 3 - sort out 10 most populated country
+most_populated_country = sort_by(country_info,'population')[0:10]
