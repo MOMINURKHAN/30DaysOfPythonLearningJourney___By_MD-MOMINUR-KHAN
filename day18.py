@@ -61,3 +61,12 @@ if word in normal_list:
                     print(list)
                 
 
+#Exercise 1
+
+#qs - what's the most frequent word in the following paragraph
+
+paragraph = 'I love teaching. If you do not love teaching what else can you love. I love Python if you do not love something which can give you all the capabilities to develop an application what else can you love.'
+dict_mostfrq = {'word':'count'}
+for i in paragraph:
+       dict_mostfrq["word" : i]
+
