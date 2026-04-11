@@ -65,8 +65,15 @@ if word in normal_list:
 
 #qs - what's the most frequent word in the following paragraph
 
-paragraph = 'I love teaching. If you do not love teaching what else can you love. I love Python if you do not love something which can give you all the capabilities to develop an application what else can you love.'
-dict_mostfrq = {'word':'count'}
-for i in paragraph:
-       dict_mostfrq["word" : i]
+paragrap = 'I love teaching. If you do not Love teaching what else can you love. I love Python if you do not love something which can give you all the capabilities to develop an application what else can you love.'
+paragrap = paragrap.lower()
+paragraph = paragrap.split()
+word_count_dict = {}
+temp = []
+for index,i in enumerate(paragraph):
+    if i in word_count_dict:
+          word_count_dict[i] +=1
+    else:
+        word_count_dict[i] = 1
 
+print(word_count_dict)
