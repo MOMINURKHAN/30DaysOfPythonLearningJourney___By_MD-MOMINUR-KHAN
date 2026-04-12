@@ -188,13 +188,12 @@ def Ceaser_Cipher():
 def Needle_Pie():
     print("Welcome to Needle Pie Test by Mominur Bin  Ratan Khan")
     print("So basically we'll take a fixed size of paper with vertical lines drawing on them the gap between two vertical line is d " \
-    "then we'll have a needle of l cm/length")
+    "then we'll have a needle of l cm/length so we'll drop the needle from a fixe distance to the paper and we'll count how many times" \
+    "it touches the vertical lines then with some formula we'll calculate the pie value - it's a fun one if we try in real life just imagine" \
+    "working on lab for months dropping needle on the paper for million time hahahah")
+    
+
+#i Actually forgot this problem's equations so i'll ask teacher tomorrow maybe cz today is sunday he should be busy
+# but i'll come back buddy even forget what about weekend review that time i'll see you 
 
 
-
-
-
-
-
-
-        
