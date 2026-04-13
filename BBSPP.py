@@ -67,7 +67,7 @@ def Bagels():
                      
 #there's still a problem left with this program it can't get the repetitive number #
 # eg. 111 or 122 or 331 anything it'll make mistake i'll work later it's already 21.29 i need to pack up 
-Bagels()
+#Bagels()
 
 #April 12 
 #Project 2 - Birthday Paradox
@@ -115,3 +115,58 @@ def Birthday_Paradox():
     #but to get 100% matching you have to increase the people to 88 so this may have some logic and sense somehow 
     
 #Birthday_Paradox()
+
+#April 13 
+#Project 3 - Bitmap Message
+import re
+
+def Bitmap_Message():
+    print("Welcom To Bitmap Images by Mominur bin Mohammad Ratan Khan")
+    #Drawing the bitmap manually with string
+    bitmap2 = ' *                                     *\n' \
+             ' *   *                             *   *\n' \
+             ' *     *                         *     *\n' \
+             ' *        *                   *        *\n' \
+             ' *            *           *            *\n' \
+             ' *                *   *                *\n' \
+             ' *                  *                  *\n' \
+             ' *                                     *\n' \
+             ' *                                     *\n' \
+             ' *                                     *\n' \
+             ' *                                     *\n' 
+    #Tryting to implement You'r Name sir (Dr. Tom Lotz). 
+    bitmap =  " XXXXXX              XXXX            XX         XX\n"\
+              " XXXXXX             XXXXXX           XX XX   XX XX\n"\
+              "   XX              XXXXXXXX          XX  XX XX  XX\n"\
+              "   XX              XXXXXXXX          XX    XX   XX\n"\
+              "   XX               XXXXXX           XX         XX\n"\
+              "   XX                XXXX            XX         XX\n" \
+              
+
+    #print(bitmap) # just to make sure everything is fine but only for debugging not for normal program or also can be shown to user as preview
+    display = ''
+    message = input("Enter your message : ")
+    count = 0
+    length_message = len(message)
+    print(length_message)
+    filter_message = ''
+    #this for filtering the space from user message as it could break my program beauty by damaging the real bitmap sketch with space
+    for i in message:
+            if i == ' ':
+                continue
+            else:
+                filter_message += i
+    if len(filter_message) == 0: # if the user only entered space 
+        print("Nothing it's just space entered you have to enter char,dig,something else space is just space in my program")
+    else:
+        for index,i in enumerate(bitmap):
+            if i == 'X': #only deal with the 'X' , space will be just as space
+                display += filter_message[count]
+                count += 1
+                if count >= len(filter_message): # again start from the starting of user text in filter message
+                    count = 0
+            else: #counting the spaces
+                display += i
+
+    print(display)
+Bitmap_Message()
