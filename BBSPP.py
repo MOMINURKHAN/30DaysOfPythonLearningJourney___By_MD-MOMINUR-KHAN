@@ -169,4 +169,84 @@ def Bitmap_Message():
                 display += i
 
     print(display)
-Bitmap_Message()
+#Bitmap_Message()
+
+
+#April 14
+
+
+#calculating the score
+def point_calc(list,owner):
+    owner = 0 #always making the score 0 as it's gonna count through the whole list although i'm not sure about this tomorrow i'll check it 
+    owner = int(owner)
+    for i in list:
+        if i[1] == 'K' or i[1] == 'Q' or i[1] == 'J':
+            owner += 10
+        elif i[1] == 'A':
+            if owner + 10 > 21:
+                owner += 1
+            else:
+                owner += 10
+        else:
+            (owner) += i[1]
+    return owner
+
+#judging the result basis on user and computer scores
+def judge(computer_score,user_score):
+    if (computer_score == user_score) and computer_score > 21:
+        print("it's a tie")
+    elif (computer_score > 21):
+        print("computer burst")
+    elif(user_score > 21):
+        print("User burst and loose")
+    elif((21-computer_score) > (21-user_score)):
+        print("User wons  Gap with (21) ","user : ",(21-user_score) ,"vs","Computer : ",(21-computer_score))
+    elif (computer_score == user_score):
+        print("Tie")
+    elif ((21-computer_score) < (21-user_score)):
+        print('computer wons')
+    return False
+
+
+def BlackJack():
+    print("Welcom to BlackJack By Mominur bin Mohammd Ratan")
+    card_group = ['spade','club','heart','Diamond'] #groups of cards
+    card_num = [2,3,4,5,6,7,8,9,10,'J','Q','K','A'] #13 cards in the box
+    computer_score = 0  #initial score
+    user_score = 0  #initial score
+    computer_card = []  #dict for holding generated cards for computer
+    for i in range(2): # generating 2 cards for computer
+        computer_card.append([random.choice(card_group),random.choice(card_num)])    
+    computer_score = point_calc(computer_card,computer_score) # calculating the score for computer
+
+
+    #similar thing for user also
+    user_card = [] 
+    for i in range(2):
+        user_card.append((random.choice(card_group),random.choice(card_num)))
+    user_score = point_calc(user_card,user_score)
+
+    #showing the computer's one card and user's both card to user
+    print(f"Computer's 1st card : {computer_card[0]}")
+    print(f"User Card : {user_card} User's Score ; {user_score}" )
+
+    flag = True #loop controller
+
+    while(flag):
+        choice = input("Stand (s) Hit (h)").lower() # stands for bid and hit for taking another card and adding it's score
+        if choice == 's':
+            flag = judge(computer_score=computer_score,user_score=user_score)
+        else:
+            user_card.append((random.choice(card_group),random.choice(card_num)))
+            user_score = point_calc(user_card,owner=user_score)
+            print(f"User Card {user_card}, user Score {user_score} ")
+            if user_score > 21:
+                flag = judge(computer_score=computer_score,user_score=user_score)
+            else:
+                None
+
+
+
+    print(f"Computer card : {computer_card} Computer_Score  : {computer_score}")
+    print(f"User card : {user_card} user Score : {user_score}")
+BlackJack()
