@@ -206,7 +206,7 @@ def Ceaser_Cipher():# a tool to encrypt or decrypt texts(a-z,A-Z) it can also en
 #8 April 2026
 
 #project 5 of jenny ma'am
-#Silen Aution program
+#Silent Aution program
 #it's kind of project bidding and the final good bid will win 
 def Silent_Auction1():
     print("This is Silent Auction Program (with list - method 1 by me)- Project 5 Jenny Ma'am")

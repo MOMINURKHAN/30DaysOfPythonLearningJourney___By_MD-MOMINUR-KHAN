@@ -207,6 +207,24 @@ def judge(computer_score,user_score):
         print('computer wons')
     return False
 
+#card set diagram
+def card_diagram():
+    card_dia = [''' ***         \n
+                                \n
+                                \n
+                            *** \n''',
+                ''' ###         \n
+                                \n
+                                \n
+                            ### \n''',
+                ''' $$$         \n
+                                \n
+                                \n
+                            $$$ \n''',
+                ''' &&&         \n
+                                \n
+                                \n
+                            &&& \n''']
 
 def BlackJack():
     print("Welcom to BlackJack By Mominur bin Mohammd Ratan")
@@ -220,7 +238,7 @@ def BlackJack():
     computer_score = point_calc(computer_card,computer_score) # calculating the score for computer
 
 
-    #similar thing for user also
+    #similar thing for user also 
     user_card = [] 
     for i in range(2):
         user_card.append((random.choice(card_group),random.choice(card_num)))
@@ -249,4 +267,28 @@ def BlackJack():
 
     print(f"Computer card : {computer_card} Computer_Score  : {computer_score}")
     print(f"User card : {user_card} user Score : {user_score}")
-BlackJack()
+#BlackJack()
+
+
+#April 16
+#project 5 - Bouncing DVD logo
+
+import bext
+import time
+import os
+
+def Bouncing_DVD():
+    j = 0
+    print("Welcome to Bouncin DVD by Mominur bin Mohammad Ratan")
+    Dvd_logo = 'DVD - MM'
+    j = 0
+    k = 15
+    for i in range(1,15):
+        j+=1
+        k-=i
+
+        print("\t"*j,"hello",end=" ")
+        print("\t"*k,"Hi")
+     
+    
+Bouncing_DVD()
