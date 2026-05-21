@@ -21,10 +21,10 @@ def print_result(list):
         print(a)
 
 def Bagels():
-    secret_num = 134#random.randint(100,999) # getting a secret num of 3 digit using random.randit 
+    secret_num = random.randint(100,999) # getting a secret num of 3 digit using random.randit 
     secret_num_str = str(secret_num) # converting it to string to easily covert to list
     secret_num_lst = list(secret_num_str) # now it's converting to list
-    print(secret_num,secret_num_str,secret_num_lst) 
+    #print(secret_num,secret_num_str,secret_num_lst) 
     flag = 10 #user have this much chances to guess
     while(flag > 0):
         output = [] #store the match/non-match/match but index wrong all these stuff with 'fermi','pico','bagels'
@@ -33,7 +33,7 @@ def Bagels():
         loop_checker = 0 #to check if the guessed number is fully matching with the software generated number e.g fermi,fermi,fermi then stop the program
         for index,i in enumerate(guess_num): # index and i 
             for sec_index,j in enumerate(secret_num_lst): # second index = sec_index and j 
-                print(i,j,index,sec_index)
+                #print(i,j,index,sec_index)
                 if i == j: # if number match then also check the index in the nested if
                     
                     if  index == sec_index:
@@ -290,5 +290,99 @@ def Bouncing_DVD():
         print("\t"*j,"hello",end=" ")
         print("\t"*k,"Hi")
      
+
+
+def Mounty_Hall():
+    first_point = 0
+    switch_point = 0
+    k = 100000
+    ratio_1st_choice = 0
+    ratio_2nd_choice = 0
+    while(k > 0):
+        animals = ['goat','cow','goat']
+        random.shuffle(animals)
+        user_choice = random.randint(0,2)
+        
+        
+        #pop out one goat from the list
+        for index,i in enumerate(animals):
+            if user_choice != index:
+                if i != 'cow':
+                    animals.pop(index)
+                    break
+        second_decision = random.randint(0,1)
+        # for index,i in enumerate(animals):
+        #     print(index,i)
+
+        if second_decision == 1:
+            ratio_2nd_choice+=1
+            user_choice = random.randint(0,1)
+            if animals[user_choice] == 'cow':
+                switch_point += 1
+
+                
+        else:
+            ratio_1st_choice+=1
+            if user_choice > 1:
+                user_choice -= 1
+            second_decision = user_choice
+            if animals[user_choice] == 'cow':
+                first_point+= 1
+        k -= 1
+
+
+
+    print(f"the ratio for switched point :  {(switch_point/ratio_2nd_choice)*100} for the 1st choice : {(first_point/ratio_1st_choice)*100}")
+    #print(f"switch point : {switch_point} first attempst point : {first_point}")
+
+#Mounty_Hall()
+
+
+
+def Markov_Generator():
+    text = " The old man walked slowly down the long road. He stopped for a moment and looked back at the small house. The sky was dark and the air felt cold against his face. Suddenly, a loud crash came from inside the empty house. He turned around quickly but saw nothing. She opened the door and saw a bright light. The light came from a single window at the far end of the room. She took one careful step forward and then another. Her heart was beating fast and she could not speak. Then she heard a soft whisper.We cannot stay here because the night is cold. The fire is almost dead and we have no more wood. We must find a safe place before the morning comes. The wind is rising and the trees are shaking. Let us go now while we still can.In the dark forest the small animal waited alone. It had been sitting there for many hours without moving. It was afraid of the open field and the bright moon above. But it was also very hungry and very tired.   After the storm everything felt quiet and strange. The streets were empty and covered with wet leaves. The power was still out and the houses were all dark. No cars moved and no lights shone anywhere. Then a single dog began to bark in the distance.He took the heavy book from the high shelf without a word. He opened it carefully and began to read the first line. The words were old and difficult to understand. He closed his eyes and tried to remember where he had seen them before. But the memory would not come back to him.The boy ran across the wide field as fast as he could. His friend was waiting for him by the big oak tree. They had planned to meet there at noon. Now the sun was already low in the sky. He hoped she had not gone home alone. She put the cup of hot tea on the small wooden table. Then she sat down in the old chair by the window. Outside the rain was falling steadily against the glass. She watched the water run down in thin lines. It was a quiet afternoon and she had nowhere else to be.The two men carried the heavy box up the narrow stairs. At the top they stopped to catch their breath. The box was full of old books and papers. They had found it in the basement under a pile of dirty rags. Neither of them knew what was inside.Every morning before sunrise the old woman went down to the water. She would stand at the edge of the shore and say nothing. The waves would come and go in the same slow rhythm. She had done this every day for more than thirty years."
+    dictionary = {}
+    text_list = text.lower().split()
+    count_curr = 0
+    for count_curr in range(0, len(text_list)-1):
+        current_word = text_list[count_curr]
+        next_word  = text_list[count_curr+1]
+        
+        if current_word not in dictionary.keys():
+            dictionary.update({current_word:{}})
+
+        if next_word not in dictionary[current_word]:
+            dictionary[current_word].update({next_word:1})
+        else:
+            dictionary[current_word][next_word] += 1 
+
+        
+    #print(dictionary)
     
-Bouncing_DVD()
+    try:
+        for current_word in dictionary:
+            sorted_dictionary = dict(sorted(dictionary[current_word].items(),key=lambda item:item[1],reverse= True ))
+            dictionary.update({current_word:sorted_dictionary})
+            break
+    except:
+        print("Operation Failed")
+
+    user_input = input("Enter the word : ")
+    lenght = int(input("Enter the lenght of the sentence you need"))
+
+    if user_input in dictionary:
+        sentence = user_input
+        temp = user_input
+        
+        for i in range(0,lenght):
+            word = temp
+            sentence +=  " " + next(iter(dictionary[word])) + " "
+            temp = next(iter(dictionary[word]))
+            if temp in sentence:
+                #here i need to make a logic that the key choose the top next value for making sentence 
+                None
+        
+        print(sentence)
+    else:
+        print("Not found ")
+Markov_Generator()

@@ -220,7 +220,7 @@ def Silent_Auction1():
         bid = int(input("Enter your bid : "))
         bid_info.append(bid)
         name_bidder.append(name)
-        ask = input("Are there any other bidder or stop : yes or no")
+        ask = input("Are there any other bidder or stop : yes or no \t")
         print(name_bidder)
         if ask == 'no':
             i = False
@@ -238,7 +238,6 @@ def Silent_Auction1():
     print(f"Highest bid is : {highest_bid},\nWinner is : {winner}")
     #programme finished here
 
-print("This is Silent Auction Program (with list - method 2 by Jenny Ma'am)- Project 5 Jenny Ma'am")
 
 import os
 
@@ -254,20 +253,46 @@ def check_winner(dict):
             highest_price = current_price
             winner_name = i
     print(f"winner : {winner_name} highest Bid : {highest_price}")
+    bidder_info = {}
+    flag = False
+    while(not flag):
+        name = input("Enter your name : ")
+        price = int(input("Enter your bid : "))
+        bidder_info[name]=price
 
-bidder_info = {}
-flag = False
-while(not flag):
-    name = input("Enter your name : ")
-    price = int(input("Enter your bid : "))
-    bidder_info[name]=price
+        ask = input("if more bidder : yes otherwise no").lower()
+        os.system('clear') # to clear the screen and hiding the previous bidder info
+        if ask=='no':
+            flag = True
+            check_winner(bidder_info)
+def silent_auction2():
+    bidder_info = {}
+    flag = False
+    while(not flag):
+        name = input("Enter your name : ")
+        price = int(input("Enter your bid : "))
+        bidder_info[name]=price
 
-    ask = input("if more bidder : yes otherwise no").lower()
-    if ask=='no':
-        flag = True
-        check_winner(bidder_info)
+        ask = input("if more bidder : yes otherwise no").lower()
+        os.system('clear') # to clear the screen and hiding the previous bidder info
+        if ask=='no':
+            flag = True
+            check_winner(bidder_info)
 
 
+#20 Apr 2026
+#jenny ma'am project 6
+#Building simple calculator
+
+def calculator():
+    print("Welcome to simple Calculator made by Mominur bin Mohammad Ranta")
+    user_operation = input('Which operation you wanna operate : (+,-,/,*,%)')
+    sign = ['+',"*"]
+    m = 100
+    n = 200
+    i,j = sign
+    print(m * n)
+calculator()
 
 #from Dr Tom's/Teacher Tom's Python Corner
 #8 April 2026
